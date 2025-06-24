@@ -1,21 +1,31 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+
+const pages: object = {
+  about: { title: "This is Me", subh: "This is subh", body: "this is body" },
+
+}
+
+function ImageDisplay() {
+  //Just an image display, maybe displays a group of images sao that the user can use arrows to change which one is visible
+  //on click the image will scale up to fill the screen
+  //
+}
 
 function TypingReveal(props: any) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [typeDisplay, setTypeDisplay] = useState('');
 
   useEffect(() => {
+    //if the text is changed, remove it character by character
     if (props.textChanged) {
       const timeout = setTimeout(() => {
-        console.log(currentIndex);
 
         setTypeDisplay(prevText => prevText.slice(0, -1));
         setCurrentIndex(prevIndex => prevIndex - 1);
 
+        //if current index is 0, then all the text is gone.
         if (currentIndex === 0) {
           props.setTextChanged(false)
-          console.log(props.textChanged)
           setCurrentIndex(0);
         }
       }, props.delay);
@@ -34,7 +44,7 @@ function TypingReveal(props: any) {
     }
   }, [currentIndex, props.delay, props.text, props.textChanged]);
 
-  return <p>{typeDisplay}<span className='typingCursor'>|</span></p>
+  return <p>{typeDisplay}</p>
 }
 
 function App() {
@@ -51,7 +61,10 @@ function App() {
         onChange={(e) => setNewText(e.target.value)}
       />
       <button
-        onClick={() => setTextChanged(true)}
+        onClick={function () {
+          setTextChanged(true);
+
+        }}
       />
     </>
   )
