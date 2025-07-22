@@ -1,80 +1,85 @@
+$white: #FAFFFF;
+$light_green: #C1E0DC;
+$dark_green: #2B3B38;
+$black: #1C2120;
+
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: $black;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+nav {
+  width: 100vw;
+  height: 50px;
+  background-color: $dark_green;
+  color: $light_green;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+.nav_options {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: $black;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  flex-flow: column nowrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+  .active::before {
+    content: "";
+    position: absolute;
+    background-color: $dark_green;
+    height: 6px;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
-  a:hover {
-    color: #747bff;
-  }
+  a {
+    text-decoration: none;
+    color: $light_green;
+    font-size: 4rem;
+    font-weight: 800;
+    display: block;
+    position: relative;
+    width: fit-content;
 
-  button {
-    background-color: #f9f9f9;
+    &:not(.active):before {
+      content: "";
+      position: absolute;
+      background-color: $dark_green;
+      height: 6px;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      transition-duration: 200ms;
+    }
+
+    &:hover:before {
+      content: "";
+      position: absolute;
+      background-color: $dark_green;
+      height: 6px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      transition-duration: 200ms;
+    }
   }
+}
+
+.exit_nav {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
 }
