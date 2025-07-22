@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import TypingReveal from './components/TypingReveal.tsx'
+import NavBar from './components/NavBar.tsx'
 
-const pages: object = {
-  about: { title: "This is Me", subh: "This is subh", body: "this is body" },
-}
+//maybe for preview of the page they will click on
+// const pages: object = {
+//   about: { title: "This is Me", subh: "This is subh", body: "this is body" },
+// }
 
 function ImageDisplay() {
-  //Just an image display, maybe displays a group of images sao that the user can use arrows to change which one is visible
+  //Just an image display, maybe displays a group of images so that the user can use arrows to change which one is visible
   //on click the image will scale up to fill the screen
   //
 }
@@ -17,6 +19,7 @@ function Home() {
 
   return (
     <>
+      <NavBar />
       <TypingReveal text={newText} delay={100} textChanged={textChanged} setTextChanged={setTextChanged} />
       <input
         name="textInput"
