@@ -3,12 +3,21 @@
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings: "wdth" 100, "YTLC" 500;
+  background-color: black;
+}
+
+#root {
+  max-width: 1400px;
+  margin: 0 auto;
   background-color: #1C2120;
+  min-height: 100vh;
 }
 
 nav {
   width: 100vw;
+  max-width: 1400px;
   height: 50px;
+  display: flex;
   background-color: #2B3B38;
   color: #C1E0DC;
 }
@@ -22,7 +31,6 @@ nav {
   flex-flow: column nowrap;
   justify-content: center;
   gap: 2rem;
-  padding: 0 2rem;
 }
 .nav_options .active::before {
   content: "";
@@ -42,6 +50,7 @@ nav {
   position: relative;
   width: -moz-fit-content;
   width: fit-content;
+  margin-left: 2rem;
 }
 .nav_options a:not(.active):before {
   content: "";
@@ -70,4 +79,18 @@ nav {
   top: 2rem;
   left: 2rem;
   z-index: 10;
+}
+
+.menu_button {
+  margin: auto 1rem;
+  height: 36px;
+}
+
+main {
+  margin: 1rem 2rem;
+}
+
+h1 {
+  color: #FAFFFF;
+  font-size: 65px;
 }/*# sourceMappingURL=index.css.map */
