@@ -32,5 +32,12 @@ export default function TypingReveal(props: any) {
         }
     }, [currentIndex, props.delay, props.text, props.textChanged]);
 
-    return <p>{typeDisplay}</p>
+    //code to return the tag that is chosen
+    if (props.htmlTag == "h1") {
+        return <h1>{typeDisplay}</h1>
+    } else if (props.htmlTag == "h2") {
+        return <h2>{typeDisplay}</h2>
+    } else {
+        return <p>{typeDisplay}</p>
+    }
 }
