@@ -22,7 +22,7 @@ function Home() {
     <>
       <NavBar />
       <main>
-        <TypingReveal text={newText} delay={100} textChanged={textChanged} setTextChanged={setTextChanged} htmlTag="h1" />
+        <h1><TypingReveal text={newText} delay={100} textChanged={textChanged} setTextChanged={setTextChanged} /></h1>
         <input
           name="textInput"
           type="text"

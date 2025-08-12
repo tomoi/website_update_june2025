@@ -1,12 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type Dispatch, type SetStateAction } from 'react'
 
-export default function TypingReveal(props: any) {
+interface typingProps {
+    textChanged: boolean;
+    setTextChanged: Dispatch<SetStateAction<boolean>>;
+    delay: number;
+    text: string;
+}
+
+export default function TypingReveal({ textChanged, setTextChanged, delay, text }: typingProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [typeDisplay, setTypeDisplay] = useState('');
 
     useEffect(() => {
         //if the text is changed, remove it character by character
-        if (props.textChanged) {
+        if (textChanged) {
             const timeout = setTimeout(() => {
 
                 setTypeDisplay(prevText => prevText.slice(0, -1));
@@ -14,30 +21,24 @@ export default function TypingReveal(props: any) {
 
                 //if current index is 0, then all the text is gone.
                 if (currentIndex === 0) {
-                    props.setTextChanged(false)
+                    setTextChanged(false)
                     setCurrentIndex(0);
                 }
-            }, props.delay);
+            }, delay);
 
             return () => clearTimeout(timeout);
         }
 
-        else if (currentIndex < props.text.length) {
+        else if (currentIndex < text.length) {
             const timeout = setTimeout(() => {
-                setTypeDisplay(prevText => prevText + props.text[currentIndex]);
+                setTypeDisplay(prevText => prevText + text[currentIndex]);
                 setCurrentIndex(prevIndex => prevIndex + 1);
-            }, props.delay);
+            }, delay);
 
             return () => clearTimeout(timeout);
         }
-    }, [currentIndex, props.delay, props.text, props.textChanged]);
+    }, [currentIndex, delay, text, textChanged]);
 
-    //code to return the tag that is chosen
-    if (props.htmlTag == "h1") {
-        return <h1>{typeDisplay}</h1>
-    } else if (props.htmlTag == "h2") {
-        return <h2>{typeDisplay}</h2>
-    } else {
-        return <p>{typeDisplay}</p>
-    }
+    return <>{typeDisplay}</>
+
 }
