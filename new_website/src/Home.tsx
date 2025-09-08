@@ -25,7 +25,9 @@ function ImageDisplay({ images }: { images: object[] }) {
   if (imageFocused) {
     return <div className='singleImage'>
       <img src={images[imageIndex].path} alt={images[imageIndex].alt}></img>
-      <p onClick={() => { setImageFocused(false) }}>x</p>
+      <img src="src/assets/close_24dp_C1E0DC_FILL0_wght400_GRAD-25_opsz24.svg" alt="Exit Button" onClick={() => setImageFocused(false)} />
+      <img src="src/assets/keyboard_arrow_left_24dp_C1E0DC_FILL0_wght400_GRAD-25_opsz24.svg" alt="Left Button" onClick={() => setImageIndex(imageIndex - 1)} />
+      <img src="src/assets/keyboard_arrow_right_24dp_C1E0DC_FILL0_wght400_GRAD-25_opsz24.svg" alt="Right Button" onClick={() => setImageIndex(imageIndex + 1)} />
     </div>
 
   } else {
