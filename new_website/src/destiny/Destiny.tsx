@@ -158,9 +158,8 @@ let staticCharacters = {
 }
 
 //function to get bungie id from user-input text
-//bungieName is the name given by the user which is then split by "#" and made into an array
 async function getBungieId(bungieName: string) {
-    //searches the bungie API using a POST request with the bungie name and 4 digit number passed into the body of the post request.
+    //searches the bungie API using a POST request with the typed name, and returns an array of the users that match the searched name
     try {
         const response = await fetch(`${apiUrl}User/Search/GlobalName/0/`, {
             headers: { 'X-API-Key': apiKey },
@@ -168,8 +167,14 @@ async function getBungieId(bungieName: string) {
             body: JSON.stringify({ "displayNamePrefix": bungieName }),
         })
         const data = await response.json();
+        // console.log(await data.Response.searchResults[0].destinyMemberships[0].membershipId)
 
-        return await data.Response.searchResults;
+        //retrieves character information in order to get the character emblem
+        let characterInformation = getCharacters(await data.Response.searchResults[0].destinyMemberships[0].membershipType, await data.Response.searchResults[0].destinyMemberships[0].membershipId)
+
+        console.log([await data.Response.searchResults, await characterInformation]);
+
+        return [await data.Response.searchResults, await characterInformation];
     } catch (error) {
         errorMessage(error);
     }
@@ -179,9 +184,23 @@ function errorMessage(message: any) {
     console.log(message);
 }
 
+async function getCharacters(membershipType, membershipId) {
+    try {
+        const response = await fetch(`${apiUrl}/Destiny2/${membershipType}/Profile/${membershipId}/?components=Characters`, {
+            headers: { 'X-API-Key': apiKey }
+        });
+        const data = await response.json();
+        // console.log(data.Response.characters.data);
+        return (data.Response.characters.data)
+    } catch (error) {
+        errorMessage(error);
+    }
+}
+
+
 //takes the object that contains all the characters and parses through it to find the most recently played character
 //returns the id of the most recent character
-function recentlyPlayed(characterList: any) {
+function recentlyPlayedCharacter(characterList: any) {
     let recentDate = new Date(characterList[Object.keys(characterList)[0]].dateLastPlayed);
     let recentCharacter = characterList[Object.keys(characterList)[0]].characterId;
     for (const character in characterList) {
@@ -216,14 +235,15 @@ function Search(props) {
     }, [search])
 
     let searchList: any = []
-    for (const individual in searchResults) {
-        searchList = [...searchList, <p onClick={() => {
-            props.setBungieName(() => [searchResults[individual].destinyMemberships[0].membershipId, searchResults[individual].destinyMemberships[0].membershipType]);
-            setSearch("");
-        }}>{searchResults[individual].bungieGlobalDisplayName}#{searchResults[individual].bungieGlobalDisplayNameCode}</p>];
+    for (const individual in searchResults[0]) {
+        searchList = [...searchList, <><p onClick={() => {
+            props.setBungieName(() => [searchResults[0][individual].destinyMemberships[0].membershipId, searchResults[0][individual].destinyMemberships[0].membershipType]);
+            // setSearch("");
+        }}>{searchResults[0][individual].bungieGlobalDisplayName}#{searchResults[0][individual].bungieGlobalDisplayNameCode}</p></>];
 
     }
 
+    //<img src={`${imgPath}${searchResults[1][individual].}`} alt="character emblem" />
     return (
         <div className="search">
             <form onSubmit={() => { event.preventDefault() }}>
