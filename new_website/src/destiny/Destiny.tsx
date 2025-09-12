@@ -168,17 +168,24 @@ async function getBungieId(bungieName: string) {
                 method: 'POST',
                 body: JSON.stringify({ "displayNamePrefix": bungieName }),
             })
-            const data = await response.json();
+            const playerData = await response.json();
             // console.log(await data.Response.searchResults[0].destinyMemberships[0].membershipId)
 
             //retrieves character information in order to get the character emblem
-            let characterInformation = getCharacters(await data.Response.searchResults[0].destinyMemberships[0].membershipType, await data.Response.searchResults[0].destinyMemberships[0].membershipId)
+            // let characterInformation = getCharacters(await playerData.Response.searchResults[0].destinyMemberships[0].membershipType, await playerData.Response.searchResults[0].destinyMemberships[0].membershipId)
 
-            // let selectedCharacterEmblem = characterInformation
+            const playerInfo = await Promise.all(playerData.Response.searchResults.map(async (player) => {
+                if (player.destinyMemberships[0] != undefined) {
+                    const character = await getCharacters(player.destinyMemberships[0].membershipType, player.destinyMemberships[0].membershipId);
+                    if (character != undefined) {
+                        return ([player, character])
+                    } else { return undefined }
+                }
+            }))
 
-            console.log([await data.Response.searchResults, await characterInformation]);
+            console.log(playerInfo.filter(Boolean));
 
-            return [await data.Response.searchResults, await characterInformation];
+            return playerInfo.filter(Boolean);
         } catch (error) {
             errorMessage(error);
         }
@@ -196,7 +203,9 @@ async function getCharacters(membershipType: number, membershipId: string) {
         });
         const data = await response.json();
         // console.log(data.Response.characters.data);
-        return (data.Response.characters.data)
+        if (data.Response != undefined) {
+            return (data.Response.characters.data)
+        } else { return undefined }
     } catch (error) {
         errorMessage(error);
     }
@@ -205,7 +214,7 @@ async function getCharacters(membershipType: number, membershipId: string) {
 
 //takes the object that contains all the characters and parses through it to find the most recently played character
 //returns the id of the most recent character
-function recentlyPlayedCharacter(characterList: any) {
+function recentChar(characterList: any) {
     let recentDate = new Date(characterList[Object.keys(characterList)[0]].dateLastPlayed);
     let recentCharacter = characterList[Object.keys(characterList)[0]].characterId;
     for (const character in characterList) {
@@ -240,15 +249,18 @@ function Search(props) {
     }, [search])
 
     let searchList: any = []
-    for (const individual in searchResults[0]) {
-        searchList = [...searchList, <><p key={individual} onClick={() => {
-            props.setBungieName(() => [searchResults[0][individual].destinyMemberships[0].membershipId, searchResults[0][individual].destinyMemberships[0].membershipType]);
-            // setSearch("");
-        }}>{searchResults[0][individual].bungieGlobalDisplayName}#{searchResults[0][individual].bungieGlobalDisplayNameCode}</p></>];
-
+    if (searchResults != undefined) {
+        for (const individual in searchResults) {
+            // console.log(searchResults[individual][1][recentChar(searchResults[individual][1])])
+            searchList = [...searchList,
+            <>
+                <img src={`${imgPath}${searchResults[individual][1][recentChar(searchResults[individual][1])].emblemPath}`} alt="character emblem" />
+                <p key={individual} onClick={() => {
+                    props.setBungieName(() => [searchResults[individual][0].destinyMemberships[0].membershipId, searchResults[individual][0].destinyMemberships[0].membershipType]);
+                    // setSearch("");
+                }}>{searchResults[individual][0].bungieGlobalDisplayName}#{searchResults[individual][0].bungieGlobalDisplayNameCode}</p></>];
+        }
     }
-
-    //<img src={`${imgPath}${searchResults[1][individual].}`} alt="character emblem" />
     return (
         <div className="search">
             <form onSubmit={() => { event.preventDefault() }}>
