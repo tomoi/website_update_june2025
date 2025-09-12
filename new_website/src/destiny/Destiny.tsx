@@ -157,26 +157,31 @@ let staticCharacters = {
     }
 }
 
+
 //function to get bungie id from user-input text
 async function getBungieId(bungieName: string) {
     //searches the bungie API using a POST request with the typed name, and returns an array of the users that match the searched name
-    try {
-        const response = await fetch(`${apiUrl}User/Search/GlobalName/0/`, {
-            headers: { 'X-API-Key': apiKey },
-            method: 'POST',
-            body: JSON.stringify({ "displayNamePrefix": bungieName }),
-        })
-        const data = await response.json();
-        // console.log(await data.Response.searchResults[0].destinyMemberships[0].membershipId)
+    if (bungieName != "") {
+        try {
+            const response = await fetch(`${apiUrl}User/Search/GlobalName/0/`, {
+                headers: { 'X-API-Key': apiKey },
+                method: 'POST',
+                body: JSON.stringify({ "displayNamePrefix": bungieName }),
+            })
+            const data = await response.json();
+            // console.log(await data.Response.searchResults[0].destinyMemberships[0].membershipId)
 
-        //retrieves character information in order to get the character emblem
-        let characterInformation = getCharacters(await data.Response.searchResults[0].destinyMemberships[0].membershipType, await data.Response.searchResults[0].destinyMemberships[0].membershipId)
+            //retrieves character information in order to get the character emblem
+            let characterInformation = getCharacters(await data.Response.searchResults[0].destinyMemberships[0].membershipType, await data.Response.searchResults[0].destinyMemberships[0].membershipId)
 
-        console.log([await data.Response.searchResults, await characterInformation]);
+            // let selectedCharacterEmblem = characterInformation
 
-        return [await data.Response.searchResults, await characterInformation];
-    } catch (error) {
-        errorMessage(error);
+            console.log([await data.Response.searchResults, await characterInformation]);
+
+            return [await data.Response.searchResults, await characterInformation];
+        } catch (error) {
+            errorMessage(error);
+        }
     }
 }
 
@@ -184,7 +189,7 @@ function errorMessage(message: any) {
     console.log(message);
 }
 
-async function getCharacters(membershipType, membershipId) {
+async function getCharacters(membershipType: number, membershipId: string) {
     try {
         const response = await fetch(`${apiUrl}/Destiny2/${membershipType}/Profile/${membershipId}/?components=Characters`, {
             headers: { 'X-API-Key': apiKey }
@@ -236,7 +241,7 @@ function Search(props) {
 
     let searchList: any = []
     for (const individual in searchResults[0]) {
-        searchList = [...searchList, <><p onClick={() => {
+        searchList = [...searchList, <><p key={individual} onClick={() => {
             props.setBungieName(() => [searchResults[0][individual].destinyMemberships[0].membershipId, searchResults[0][individual].destinyMemberships[0].membershipType]);
             // setSearch("");
         }}>{searchResults[0][individual].bungieGlobalDisplayName}#{searchResults[0][individual].bungieGlobalDisplayNameCode}</p></>];
@@ -247,20 +252,30 @@ function Search(props) {
     return (
         <div className="search">
             <form onSubmit={() => { event.preventDefault() }}>
-                <label for="nameInput">Enter a Bungie Id</label>
-                <input type="text" autocomplete="off" name="nameInput" id="nameInput" placeholder="ex. name#1234" value={search}
+                <label htmlFor="nameInput">Destiny 2 Player Tag</label>
+                <input type="text" autoComplete="off" name="nameInput" id="nameInput" placeholder="ex. name#1234" value={search}
                     onChange={(event) => { setSearch(event.target.value); }} required />
             </form>
-            <div className="search-results">{searchList}</div>
+            <div className="search_results">{searchList}</div>
         </div>
     )
 }
 
 function Destiny() {
 
-    //first will be bungie internal id ex:"4611686018483610436", second will be platform ID ex: 3
+    //first in array will be bungie internal id ex:"4611686018483610436", second will be platform ID ex: 3
     const [bungieName, setBungieName] = useState([])
 
+
+    //only runs on the first go to select the active character as the one who is most recently played
+    useEffect(() => {
+        (async () => {
+            //run this code when a character is selected
+            //using this to grab the other data from the api
+            //maybe use the new react "use()" function
+        })();
+        return () => { };
+    }, [bungieName])
 
     return (
         <div>
