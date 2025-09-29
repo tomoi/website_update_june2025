@@ -24,9 +24,6 @@ export default function NavBar() {
                         <NavLink to="/photography" end>
                             Photography
                         </NavLink>
-                        <NavLink to="/destiny" end>
-                            Destiny
-                        </NavLink>
                     </div> </> :
                 <><img src="/src/assets/menu-icon.svg" alt="menu icon" onClick={() => toggleShowNav(true)} className="menu_button" /></>
             }
