@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
@@ -96,38 +100,75 @@ main {
 
 h1 {
   color: #FAFFFF;
-  font-size: 65px;
+  font-size: 4rem;
+}
+
+p {
+  color: #FAFFFF;
+  font-size: 1.2rem;
 }
 
 .imageGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+  gap: 3rem;
+}
+.imageGrid .polaroid {
+  background-color: white;
+  padding: 1rem;
+  padding-bottom: 4rem;
+  transition-duration: 100ms;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.imageGrid .polaroid:hover {
+  scale: 0.95;
+  transition-duration: 100ms;
+}
+.imageGrid .polaroid:active {
+  scale: 0.96;
 }
 .imageGrid img {
   width: 100%;
   height: auto;
-  border-radius: 1rem;
-  transition-duration: 100ms;
-}
-.imageGrid img:hover {
-  scale: 0.98;
-  transition-duration: 100ms;
-}
-.imageGrid img:active {
-  scale: 0.96;
 }
 
-.singleImage {
+.singleImageDiv {
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 100vh;
   width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 8rem;
 }
-.singleImage img {
-  width: 100%;
+.singleImageDiv .singleImage {
+  width: auto;
   max-width: 100vw;
-  height: auto;
+  height: 100%;
   max-height: 100vh;
   -o-object-fit: contain;
      object-fit: contain;
+  margin: auto;
+  display: block;
+}
+.singleImageDiv .imageButton {
+  height: 100px;
+  width: auto;
+  position: absolute;
+}
+.singleImageDiv .imageExit {
+  top: 2rem;
+}
+.singleImageDiv .imageLeft {
+  top: 50%;
+  margin-top: -50px;
+  left: 5%;
+}
+.singleImageDiv .imageRight {
+  top: 50%;
+  margin-top: -50px;
+  right: 5%;
 }/*# sourceMappingURL=index.css.map */
