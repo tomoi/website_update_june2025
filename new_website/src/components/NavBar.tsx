@@ -15,11 +15,11 @@ export default function NavBar() {
                         <NavLink to="/about" end>
                             About Me
                         </NavLink>
-                        <NavLink to="/webdev" end>
-                            Web Development
+                        <NavLink to="/projects" end>
+                            Projects
                         </NavLink>
-                        <NavLink to="/3dart" end>
-                            3D Art
+                        <NavLink to="/art" end>
+                            Art
                         </NavLink>
                         <NavLink to="/photography" end>
                             Photography
