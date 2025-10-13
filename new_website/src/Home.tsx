@@ -18,7 +18,7 @@ function ImageDisplay({ images }: { images: object[] }) {
 
   //image has "any" type because of conflict with declaring the object types
   const imageObject = images.map((image: any, index: number) => {
-    //picks a random number between -3 and 3 to add some variation to the polaroids
+    //picks a random number between -3 and 3 to add some random rotation to the polaroids
     let randomRotate = Math.floor(Math.random() * (3 - (-3)) + (-3));
     return <div className="polaroid" style={{ transform: `rotate(${randomRotate}deg)` }}>
       <img src={image.path} alt={image.alt} key={index} onClick={() => { setImageIndex(index); setImageFocused(true); }} />

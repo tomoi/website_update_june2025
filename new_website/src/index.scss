@@ -15,7 +15,7 @@ $black: #1C2120;
     "wdth" 100,
     "YTLC" 500;
 
-  background-color: black;
+  background-color: $black;
 }
 
 #root {
@@ -23,7 +23,7 @@ $black: #1C2120;
   margin: 0 auto;
   background-color: $black;
   min-height: 100vh;
-
+  height: fit-content
 }
 
 nav {
@@ -33,21 +33,40 @@ nav {
   display: flex;
   background-color: $dark_green;
   color: $light_green;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: $dark_green;
+    height: 50px;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
 }
 
 .nav_options {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+
+  position: fixed;
+  z-index: 1;
   width: 100vw;
   height: 100vh;
-  position: absolute;
-  background-color: $black;
+  max-width: 1400px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   gap: 2rem;
+
+  &::before {
+    content: "";
+    background-color: $black;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
 
   .active::before {
     content: "";
@@ -95,10 +114,20 @@ nav {
 }
 
 .exit_nav {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  position: fixed;
+  margin-top: 2rem;
+  // margin-left: 2rem;
+  height: 80px;
+  width: auto;
   z-index: 10;
+  transition-duration: 200ms;
+
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition-duration: 100ms;
+  }
 }
 
 .menu_button {
@@ -125,6 +154,8 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
+  margin: 2rem 1rem;
+
 
   .polaroid {
     background-color: white;
@@ -132,6 +163,7 @@ p {
     padding-bottom: 4rem;
     transition-duration: 100ms;
     height: fit-content;
+    box-shadow: 4px 4px 6px;
 
     &:hover {
       scale: 0.95;
@@ -174,6 +206,13 @@ p {
     height: 100px;
     width: auto;
     position: absolute;
+    transition-duration: 100ms;
+
+    &:hover {
+      cursor: pointer;
+      scale: 1.1;
+      transition-duration: 100ms;
+    }
   }
 
   .imageExit {

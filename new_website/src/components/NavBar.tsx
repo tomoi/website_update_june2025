@@ -7,7 +7,7 @@ export default function NavBar() {
     return (
         <nav>
             {showNav ?
-                <>  <img src="/src/assets/menu-icon.svg" alt="Exit Button" onClick={() => toggleShowNav(false)} className="exit_nav" />
+                <>  <img src="/src/assets/close_24dp_C1E0DC_FILL0_wght400_GRAD-25_opsz24.svg" alt="Exit Button" onClick={() => toggleShowNav(false)} className="exit_nav" />
                     <div className="nav_options">
                         <NavLink to="/" end>
                             Home

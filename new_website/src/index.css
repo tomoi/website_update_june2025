@@ -7,7 +7,7 @@
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings: "wdth" 100, "YTLC" 500;
-  background-color: black;
+  background-color: #1C2120;
 }
 
 #root {
@@ -15,6 +15,8 @@
   margin: 0 auto;
   background-color: #1C2120;
   min-height: 100vh;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 nav {
@@ -25,20 +27,36 @@ nav {
   background-color: #2B3B38;
   color: #C1E0DC;
 }
-
-.nav_options {
+nav::before {
+  content: "";
+  position: absolute;
+  background-color: #2B3B38;
+  height: 50px;
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
+  z-index: -1;
+}
+
+.nav_options {
+  position: fixed;
+  z-index: 1;
   width: 100vw;
   height: 100vh;
-  position: absolute;
-  background-color: #1C2120;
+  max-width: 1400px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   gap: 2rem;
+}
+.nav_options::before {
+  content: "";
+  background-color: #1C2120;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 .nav_options .active::before {
   content: "";
@@ -83,10 +101,17 @@ nav {
 }
 
 .exit_nav {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  position: fixed;
+  margin-top: 2rem;
+  height: 80px;
+  width: auto;
   z-index: 10;
+  transition-duration: 200ms;
+}
+.exit_nav:hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition-duration: 100ms;
 }
 
 .menu_button {
@@ -112,6 +137,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
+  margin: 2rem 1rem;
 }
 .imageGrid .polaroid {
   background-color: white;
@@ -120,6 +146,7 @@ p {
   transition-duration: 100ms;
   height: -moz-fit-content;
   height: fit-content;
+  box-shadow: 4px 4px 6px;
 }
 .imageGrid .polaroid:hover {
   scale: 0.95;
@@ -158,6 +185,12 @@ p {
   height: 100px;
   width: auto;
   position: absolute;
+  transition-duration: 100ms;
+}
+.singleImageDiv .imageButton:hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition-duration: 100ms;
 }
 .singleImageDiv .imageExit {
   top: 2rem;
