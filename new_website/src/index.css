@@ -125,12 +125,13 @@ main {
 
 h1 {
   color: #FAFFFF;
-  font-size: 4rem;
+  font-size: 5rem;
+  margin-bottom: 1rem;
 }
 
 p {
   color: #FAFFFF;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .imageGrid {
@@ -140,7 +141,7 @@ p {
   margin: 2rem 1rem;
 }
 .imageGrid .polaroid {
-  background-color: white;
+  background-color: rgb(235, 242, 231);
   padding: 1rem;
   padding-bottom: 4rem;
   transition-duration: 100ms;
@@ -149,8 +150,9 @@ p {
   box-shadow: 4px 4px 6px;
 }
 .imageGrid .polaroid:hover {
-  scale: 0.95;
+  scale: 0.98;
   transition-duration: 100ms;
+  cursor: pointer;
 }
 .imageGrid .polaroid:active {
   scale: 0.96;

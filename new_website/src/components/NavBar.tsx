@@ -12,9 +12,6 @@ export default function NavBar() {
                         <NavLink to="/" end>
                             Home
                         </NavLink>
-                        <NavLink to="/about" end>
-                            About Me
-                        </NavLink>
                         <NavLink to="/projects" end>
                             Projects
                         </NavLink>
@@ -23,6 +20,9 @@ export default function NavBar() {
                         </NavLink>
                         <NavLink to="/photography" end>
                             Photography
+                        </NavLink>
+                        <NavLink to="/about" end>
+                            About Me
                         </NavLink>
                     </div> </> :
                 <><img src="/src/assets/menu-icon.svg" alt="menu icon" onClick={() => toggleShowNav(true)} className="menu_button" /></>

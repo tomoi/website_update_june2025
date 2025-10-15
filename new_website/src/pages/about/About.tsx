@@ -5,7 +5,10 @@ function About() {
     return (
         <>
             <NavBar />
-            <p>This is the About Page</p>
+            <main>
+                <h1>About Me!</h1>
+                <p>This is the About Page</p>
+            </main>
         </>
     )
 }
