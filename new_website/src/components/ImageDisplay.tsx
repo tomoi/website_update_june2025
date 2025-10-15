@@ -15,13 +15,18 @@ export default function ImageDisplay({ images }: { images: object[] }) {
         //picks a random number between -3 and 3 to add some random rotation to the polaroids
         let randomRotate = Math.floor(Math.random() * (3 - (-3)) + (-3));
         return <div className="polaroid" style={{ transform: `rotate(${randomRotate}deg)` }} key={index}>
-            <img src={image.path} alt={image.alt} onClick={() => { setImageIndex(index); setImageFocused(true); }} />
+            <picture onClick={() => { setImageIndex(index); setImageFocused(true); }}>
+                <source media="(min-width:900px)" srcSet={image.pathLg} />
+                <source media="(min-width:600px)" srcSet={image.pathMd} />
+                <img src={image.pathSm} alt={image.pathSm} />
+            </picture>
+            {/* <img src={image.path} alt={image.alt} onClick={() => { setImageIndex(index); setImageFocused(true); }} /> */}
         </div>
     })
 
     if (imageFocused) {
         return <div className='singleImageDiv'>
-            <img src={images[imageIndex].path} alt={images[imageIndex].alt} className="singleImage"></img>
+            <img src={images[imageIndex].pathLg} alt={images[imageIndex].alt} className="singleImage"></img>
             <img src="src/assets/close_24dp_C1E0DC_FILL0_wght400_GRAD-25_opsz24.svg" alt="Exit Button" onClick={() => setImageFocused(false)} className="imageExit imageButton" />
             {(imageIndex === 0) ? null : <img src="src/assets/keyboard_arrow_left_24dp_C1E0DC_FILL0_wght400_GRAD-25_opsz24.svg" alt="Left Button" onClick={() => setImageIndex(imageIndex - 1)} className="imageLeft imageButton" />}
             {(imageIndex === images.length - 1) ? null : <img src="src/assets/keyboard_arrow_right_24dp_C1E0DC_FILL0_wght400_GRAD-25_opsz24.svg" alt="Right Button" onClick={() => setImageIndex(imageIndex + 1)} className="imageRight imageButton" />}
