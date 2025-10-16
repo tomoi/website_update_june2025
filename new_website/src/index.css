@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -125,13 +127,42 @@ main {
 
 h1 {
   color: #FAFFFF;
-  font-size: 5rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
 }
 
 p {
   color: #FAFFFF;
   font-size: 1.4rem;
+  margin: 1.5rem 1rem;
+}
+
+.hero {
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  display: block;
+  z-index: 5;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%);
+  height: 100%;
+  width: 100%;
+}
+.hero div {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+  z-index: 6;
+}
+.hero img {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-height: 700px;
 }
 
 .imageGrid {

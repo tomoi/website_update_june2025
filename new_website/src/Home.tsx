@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import NavBar from './components/NavBar.tsx'
-import ImageDisplay from './components/ImageDisplay.tsx'
 
 // interface Images {
 //   path: string;
@@ -35,22 +34,22 @@ function Home() {
   return (
     <>
       <NavBar />
+      <header className="hero">
+        <picture>
+          <source media="(min-width:900px)" srcSet="src/pages/photography/media/IMG_1522-lg.jpg" />
+          <source media="(min-width:600px)" srcSet="src/pages/photography/media/IMG_1522-md.jpg" />
+          <img src="src/pages/photography/media/IMG_1522-sm.jpg" alt="mountainpeaks in the distance" />
+        </picture>
+        <div>
+          <h1>Hello there, my name is Tomas.</h1>
+          <p>I am a front-end developer / designer with a passion for creating responsive webpages using modern technologies.</p>
+        </div>
+      </header>
       <main>
-        <h1>My name is Tomas Godoybaca</h1>
-        <p>I am a front-end developer / designer based in Saskatoon, Saskatchewan.</p>
-        {/* <input
-          name="textInput"
-          type="text"
-          value={newText}
-          onChange={(e) => setNewText(e.target.value)}
-        />
-        <button
-          onClick={function () {
-            setTextChanged(true);
+        <h2>My Journey</h2>
+        <p>My software development journey started in Highschool where I learned the basics of Python.</p>
+        <p>Even though learning Python was fun and interesting, I always wanted to make something visual. Which is why I turned to front-end web development and design.</p>
 
-          }}
-        /> */}
-        {/* <ImageDisplay images={images} /> */}
       </main>
     </>
   )
