@@ -1,6 +1,13 @@
 import { useState } from 'react'
 
-export default function ImageDisplay({ images }: { images: object[] }) {
+interface Images {
+    pathLg: string;
+    pathMd: string;
+    pathSm: string;
+    alt: string;
+}
+
+export default function ImageDisplay({ images }: { images: Images[] }) {
     const [imageIndex, setImageIndex] = useState(0);
     const [imageFocused, setImageFocused] = useState(false);
 
@@ -10,8 +17,7 @@ export default function ImageDisplay({ images }: { images: object[] }) {
     //images will be displayed on a grid that will fill the parent
     //transform: "rotate({Math.floor(Math.random() * (8 - (-8)) + (-8)))"
 
-    //image has "any" type because of conflict with declaring the object types
-    const imageObject = images.map((image: any, index: number) => {
+    const imageObject = images.map((image: Images, index: number) => {
         //picks a random number between -3 and 3 to add some random rotation to the polaroids
         let randomRotate = Math.floor(Math.random() * (3 - (-3)) + (-3));
         return <div className="polaroid" style={{ transform: `rotate(${randomRotate}deg)` }} key={index}>
