@@ -188,6 +188,65 @@ p {
   }
 }
 
+#home_main {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    "intro intro intro intro intro contact contact contact contact"
+    "intro intro intro intro intro contact contact contact contact"
+    "intro intro intro intro intro featured1 featured1 featured1 featured1"
+    "clock clock icon1 icon2 icon3 featured1 featured1 featured1 featured1"
+    "photos photos photos featured2 featured2 featured2 art art art"
+    "photos photos photos featured2 featured2 featured2 art art art";
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  #home_intro {
+    grid-area: intro;
+  }
+
+  #home_contact {
+    grid-area: contact;
+  }
+
+  #main_clock {
+    grid-area: clock;
+  }
+
+  .github {
+    grid-area: icon1;
+  }
+
+  .linkedin {
+    grid-area: icon2;
+  }
+
+  .instagram {
+    grid-area: icon3;
+  }
+
+  #featured_image_1 {
+    grid-area: featured1;
+  }
+
+  #featured_image_2 {
+    grid-area: featured2;
+  }
+
+  #photography_link {
+    grid-area: photos;
+  }
+
+  #art_link {
+    grid-area: art;
+  }
+}
+
 
 
 

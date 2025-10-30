@@ -51,7 +51,7 @@ function Home() {
       </header> */}
       <main id="home_main">
         <section id="home_intro">
-          <p>Hey there stranger, I'm Tomas Godoybaca. I am a Front End developer with an eye for detail.</p>
+          <p>Hey there, I'm Tomas Godoybaca. I am a Front End developer with an eye for detail.</p>
           <p>I recently graduated from the Interactive Design & Technology course at Saskatchewan Polytechnic with Great Distinction.</p>
         </section>
         <section id="home_contact">
@@ -61,13 +61,20 @@ function Home() {
         <section id="main_clock">
           <Clock />
         </section>
-        <section id="main_social_icons">
-          <a href="https://github.com/tomoi" className="github"><img src="src/assets/github-mark-white.svg" alt="GitHub Logo" /></a>
-          <a href="https://www.linkedin.com/in/tomasgodoybaca/"><img src="src/assets/InBug-White.png" alt="LinkedIn Logo" /></a>
-          <a href="https://www.instagram.com/tomoi_28/"><img src="src/assets/Instagram_Glyph_White.svg" alt="Instagram Logo" /></a>
-
+        <a href="https://github.com/tomoi" className="github"><img src="src/assets/github-mark-white.svg" alt="GitHub Logo" /></a>
+        <a href="https://www.linkedin.com/in/tomasgodoybaca/" className="linkedin"><img src="src/assets/InBug-White.png" alt="LinkedIn Logo" /></a>
+        <a href="https://www.instagram.com/tomoi_28/" className="instagram"><img src="src/assets/Instagram_Glyph_White.svg" alt="Instagram Logo" /></a>
+        <section id="featured_image_1"><img src="src/pages/photography/media/IMG_1522-md.jpg" alt="Mountain peaks in the distance" /></section>
+        <section id="featured_image_2"><img src="src/pages/photography/media/IMG_1088-md.jpg" alt="Two penguins posing for the camera" /></section>
+        <section id="photography_link">
+          <h2>Photography</h2>
+          <img src="" alt="" />
         </section>
-      </main>
+        <section id="art_link">
+          <h2>Art</h2>
+          <img src="" alt="" />
+        </section>
+      </main >
     </>
   )
 }

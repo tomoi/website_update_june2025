@@ -165,6 +165,48 @@ p {
   max-height: 700px;
 }
 
+#home_main {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas: "intro intro intro intro intro contact contact contact contact" "intro intro intro intro intro contact contact contact contact" "intro intro intro intro intro featured1 featured1 featured1 featured1" "clock clock icon1 icon2 icon3 featured1 featured1 featured1 featured1" "photos photos photos featured2 featured2 featured2 art art art" "photos photos photos featured2 featured2 featured2 art art art";
+}
+#home_main img {
+  height: auto;
+  width: 100%;
+}
+#home_main #home_intro {
+  grid-area: intro;
+}
+#home_main #home_contact {
+  grid-area: contact;
+}
+#home_main #main_clock {
+  grid-area: clock;
+}
+#home_main .github {
+  grid-area: icon1;
+}
+#home_main .linkedin {
+  grid-area: icon2;
+}
+#home_main .instagram {
+  grid-area: icon3;
+}
+#home_main #featured_image_1 {
+  grid-area: featured1;
+}
+#home_main #featured_image_2 {
+  grid-area: featured2;
+}
+#home_main #photography_link {
+  grid-area: photos;
+}
+#home_main #art_link {
+  grid-area: art;
+}
+
 .imageGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
