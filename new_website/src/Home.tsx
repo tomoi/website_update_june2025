@@ -6,6 +6,10 @@ import NavBar from './components/NavBar.tsx'
 //   alt: string;
 // }
 
+function Clock() {
+  return <p>12:00</p>
+}
+
 function Home() {
 
   // const images: Images[] = [
@@ -34,7 +38,7 @@ function Home() {
   return (
     <>
       <NavBar />
-      <header className="hero">
+      {/* <header className="hero">
         <picture>
           <source media="(min-width:900px)" srcSet="src/pages/photography/media/IMG_1522-lg.jpg" />
           <source media="(min-width:600px)" srcSet="src/pages/photography/media/IMG_1522-md.jpg" />
@@ -44,12 +48,20 @@ function Home() {
           <h1>Hello there, my name is Tomas.</h1>
           <p>I am a front-end developer / designer with a passion for creating responsive webpages using modern technologies.</p>
         </div>
-      </header>
-      <main>
-        <h2>My Journey</h2>
-        <p>My software development journey started in Highschool where I learned the basics of Python.</p>
-        <p>Even though learning Python was fun and interesting, I always wanted to make something visual. Which is why I turned to front-end web development and design.</p>
-
+      </header> */}
+      <main id="home_main">
+        <section id="home_intro">
+          <p>Hey there stranger, I'm Tomas Godoybaca. I am a Front End developer with an eye for detail.</p>
+          <p>I recently graduated from the Interactive Design & Technology course at Saskatchewan Polytechnic with Great Distinction.</p>
+        </section>
+        <section id="home_contact">
+          <p>You can find me in these places, or just send me an email.</p>
+          <a href="mailto:tommygodoybaca@outlook.com">tommygodoybaca@outlook.com</a>
+        </section>
+        <section id="main_clock">
+          <Clock />
+        </section>
+        <section></section>
       </main>
     </>
   )
