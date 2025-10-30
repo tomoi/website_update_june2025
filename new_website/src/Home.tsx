@@ -61,7 +61,12 @@ function Home() {
         <section id="main_clock">
           <Clock />
         </section>
-        <section></section>
+        <section id="main_social_icons">
+          <a href="https://github.com/tomoi" className="github"><img src="src/assets/github-mark-white.svg" alt="GitHub Logo" /></a>
+          <a href="https://www.linkedin.com/in/tomasgodoybaca/"><img src="src/assets/InBug-White.png" alt="LinkedIn Logo" /></a>
+          <a href="https://www.instagram.com/tomoi_28/"><img src="src/assets/Instagram_Glyph_White.svg" alt="Instagram Logo" /></a>
+
+        </section>
       </main>
     </>
   )
